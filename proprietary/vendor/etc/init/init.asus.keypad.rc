@@ -1,0 +1,15 @@
+
+service keypad_irq_set /vendor/bin/sh /vendor/bin/keypad_irq_set.sh
+    class core
+    user root
+    oneshot
+    disabled
+
+on post-fs-data
+    start keypad_irq_set
+
+# instant camera setting
+on property:persist.vendor.asus.instant_camera=0
+    write /sys/module/pm8941_pwrkey/parameters/volume_key_wake_en 0
+on property:persist.vendor.asus.instant_camera=1
+    write /sys/module/pm8941_pwrkey/parameters/volume_key_wake_en 1

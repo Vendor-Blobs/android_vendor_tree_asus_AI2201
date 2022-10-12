@@ -1,0 +1,11 @@
+#HDCP firmware distrubution for 8450/8475
+service vendor.hdcp_distribute /vendor/bin/sh /vendor/bin/hdcp_distribute.sh
+    class late_start
+    user root
+    group root
+    disabled
+    seclabel u:r:savelogmtp:s0
+    oneshot
+
+on post-fs-data
+    start vendor.hdcp_distribute

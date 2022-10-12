@@ -1,0 +1,8 @@
+service tdoor_load_cal /vendor/bin/sh /vendor/bin/tdoor_load_cal.sh
+    user root
+    group root
+    oneshot
+    disabled
+
+on property:sys.boot_completed=1
+    start tdoor_load_cal
